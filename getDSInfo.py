@@ -23,7 +23,7 @@ for ds in dss:
  min = cmo.getMinCapacity()
  icts = cmo.getInactiveConnectionTimeoutSeconds()
 
- print "Los parametros del Datasource '+dsName+' son:'
+ print "Los parametros del Datasource "+dsName+" son:"
  print "Las conexiones iniciales son: "+str(ic)
  print "Las conexiones Maximas son: "+str(max)
  print "Las conexiones minimas son: "+str(min)
