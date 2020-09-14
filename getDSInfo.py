@@ -19,14 +19,33 @@ def getJDBCConnectionPoolParams(dsName):
 	MaxCapacity = cmo.getMaxCapacity()
 	MinCapacity = cmo.getMinCapacity()
 	InactiveConnectionTimeoutSeconds = cmo.getInactiveConnectionTimeoutSeconds()
-	print "Los parametros del Datasource "+dsName+" son:"
-	print "Las conexiones iniciales son: "+str(InitialCapacity)
-	print "Las conexiones Maximas son: "+str(MaxCapacity)
-	print "Las conexiones minimas son: "+str(MinCapacity)
-	print "El timeout de conexion inactiva: "+str(InactiveConnectionTimeoutSeconds)
+	print "InitialCapacity: "+str(InitialCapacity)
+	print "MaxCapacity: "+str(MaxCapacity)
+	print "MinCapacity: "+str(MinCapacity)
+	print "InactiveConnectionTimeoutSeconds: "+str(InactiveConnectionTimeoutSeconds)
+	print ''
+	
+def getJDBCXAParams(dsName):
+	cd('/JDBCSystemResources/'+dsName+'/JDBCResource/'+dsName+'/JDBCXAParams/'+dsName)
+	XaSetTransactionTimeout = cmo.getXaSetTransactionTimeout()
+	XaTransactionTimeout = cmo.getXaTransactionTimeout()
+	print 'XaSetTransactionTimeout: '+XaSetTransactionTimeout
+	print 'XaTransactionTimeout: '+XaTransactionTimeout
+	
+	
+	
+def separador():
+	print '-------------------------'
 
 for ds in dss:
 	dsName = ds.getName()
+	print 'JDBCConnectionPoolParams'
+	separador()
+	print "Los parametros del Datasource "+dsName+" son:"
 	getJDBCConnectionPoolParams(dsName)
-
 	cd('/')
+	separador()
+	print ''
+	print 'JDBCXAParams'
+	getJDBCXAParams(dsName)
+	
