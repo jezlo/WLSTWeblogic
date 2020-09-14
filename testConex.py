@@ -1,4 +1,8 @@
-import json
+import java.io.FileReader;
+import javax.json.Json;
+import javax.json.JsonReader;
+import javax.json.JsonStructure;
+#import json
 
 def getDatosConex():
  with open('config.json') as json_files:

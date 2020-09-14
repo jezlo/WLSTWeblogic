@@ -1,4 +1,6 @@
-import json
+#import json
+from javax.json import Json
+from javax.json import JsonObject
 
 data = {}
 data['people'] = []
@@ -19,4 +21,4 @@ data['people'].append({
 })
 
 with open('data.txt', 'w') as outfile:
-    json.dump(data, outfile)
+   json.dump(data, outfile)
