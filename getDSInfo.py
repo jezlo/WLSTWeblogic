@@ -1,4 +1,4 @@
-import json
+#import json
 
 ### Creación de Array para JSON
 data = {}
@@ -20,10 +20,10 @@ def getJDBCConnectionPoolParams(dsName):
 	MinCapacity = cmo.getMinCapacity()
 	InactiveConnectionTimeoutSeconds = cmo.getInactiveConnectionTimeoutSeconds()
 	print "Los parametros del Datasource "+dsName+" son:"
-	print "Las conexiones iniciales son: "+str(ic)
-	print "Las conexiones Maximas son: "+str(max)
-	print "Las conexiones minimas son: "+str(min)
-	print "El timeout de conexion inactiva: "+str(icts)
+	print "Las conexiones iniciales son: "+str(InitialCapacity)
+	print "Las conexiones Maximas son: "+str(MaxCapacity)
+	print "Las conexiones minimas son: "+str(MinCapacity)
+	print "El timeout de conexion inactiva: "+str(InactiveConnectionTimeoutSeconds)
 
 for ds in dss:
 	dsName = ds.getName()
