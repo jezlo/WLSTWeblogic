@@ -27,7 +27,7 @@ def getJDBCConnectionPoolParams(dsName):
 	
 def getJDBCXAParams(dsName):
 	cd('/JDBCSystemResources/'+dsName+'/JDBCResource/'+dsName+'/JDBCXAParams/'+dsName)
-	XaSetTransactionTimeout = cmo.getXaSetTransactionTimeout()
+	XaSetTransactionTimeout = get('XaSetTransactionTimeout')
 	XaTransactionTimeout = cmo.getXaTransactionTimeout()
 	print 'XaSetTransactionTimeout: '+XaSetTransactionTimeout
 	print 'XaTransactionTimeout: '+XaTransactionTimeout
