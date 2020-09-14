@@ -1,4 +1,3 @@
-
 connect('weblogic','Welcome1','t3://localhost:7001')
 cd('JDBCSystemResources')
 dataSources = cmo.getJDBCSystemResources()
