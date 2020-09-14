@@ -10,4 +10,4 @@ for ds in dataSources:
  path = cmo.getSourcePath()
  print 'Archivo de Configuracion: ' + path
  cd('../')
- print "Bye"
+print "Ejecucion de Script Terminada"
