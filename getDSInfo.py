@@ -29,7 +29,7 @@ def getJDBCXAParams(dsName):
 	cd('/JDBCSystemResources/'+dsName+'/JDBCResource/'+dsName+'/JDBCXAParams/'+dsName)
 	XaSetTransactionTimeout = get('XaSetTransactionTimeout')
 	XaTransactionTimeout = cmo.getXaTransactionTimeout()
-	print 'XaSetTransactionTimeout: '+XaSetTransactionTimeout
+	print 'XaSetTransactionTimeout: '+str(XaSetTransactionTimeout)
 	print 'XaTransactionTimeout: '+XaTransactionTimeout
 	
 	
