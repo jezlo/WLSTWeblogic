@@ -1,13 +1,55 @@
+#import json
+
+### Creación de Array para JSON
+data = {}
+data['dataSources'] = []
+
+### Conexión a la consola
 connect('weblogic','Welcome1','t3://192.168.0.30:7001')
 
-cd('JDBCSystemResources/SOADataSource/JDBCResource/SOADataSource/JDBCConnectionPoolParams/SOADataSource')
-ic = cmo.getInitialCapacity()
-max = cmo.getMaxCapacity()
-min = cmo.getMinCapacity()
-icts = cmo.getInactiveConnectionTimeoutSeconds()
 
+cd('/')
 
-print "Las conexiones iniciales son: "+str(ic)
-print "Las conexiones Maximas son: "+str(max)
-print "Las conexiones minimas son: "+str(min)
-print "El timeout de conexion inactiva: "+str(icts) 
+#Se obtiene los parametros de JDBCSystemResources
+dss = cmo.getJDBCSystemResources()
+
+def getJDBCConnectionPoolParams(dsName):
+	cd('JDBCSystemResources/'+dsName+'/JDBCResource/'+dsName+'/JDBCConnectionPoolParams/'+dsName)
+	InitialCapacity = cmo.getInitialCapacity()
+	MaxCapacity = cmo.getMaxCapacity()
+	MinCapacity = cmo.getMinCapacity()
+	InactiveConnectionTimeoutSeconds = cmo.getInactiveConnectionTimeoutSeconds()
+	print "InitialCapacity: "+str(InitialCapacity)
+	print "MaxCapacity: "+str(MaxCapacity)
+	print "MinCapacity: "+str(MinCapacity)
+	print "InactiveConnectionTimeoutSeconds: "+str(InactiveConnectionTimeoutSeconds)
+	print ''
+	
+def getJDBCXAParams(dsName):
+	cd('/JDBCSystemResources/'+dsName+'/JDBCResource/'+dsName+'/JDBCXAParams/'+dsName)
+	XaSetTransactionTimeout = get('XaSetTransactionTimeout')
+	XaTransactionTimeout = cmo.getXaTransactionTimeout()
+	print 'XaSetTransactionTimeout: '+str(XaSetTransactionTimeout)
+	print 'XaTransactionTimeout: '+str(XaTransactionTimeout)
+	
+	
+	
+def separador():
+	print '-------------------------'
+
+for ds in dss:
+	dsName = ds.getName()
+	print "Los parametros del Datasource "+dsName+" son:"
+	print ''
+	print 'JDBCConnectionPoolParams'
+	separador()
+	getJDBCConnectionPoolParams(dsName)
+	cd('/')
+	separador()
+	print ''
+	print 'JDBCXAParams'
+	getJDBCXAParams(dsName)
+	print ''
+	separador()
+	cd('/')
+	
