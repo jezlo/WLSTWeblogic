@@ -1,0 +1,9 @@
+{
+	"conexion": [
+		{
+			"usuario": "weblogic",
+			"password":	"Welcome1",
+			"url": "t3://192.168.0.1:7001"
+		}
+	]
+}
