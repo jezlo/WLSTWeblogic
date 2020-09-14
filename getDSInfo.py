@@ -30,7 +30,7 @@ def getJDBCXAParams(dsName):
 	XaSetTransactionTimeout = get('XaSetTransactionTimeout')
 	XaTransactionTimeout = cmo.getXaTransactionTimeout()
 	print 'XaSetTransactionTimeout: '+str(XaSetTransactionTimeout)
-	print 'XaTransactionTimeout: '+XaTransactionTimeout
+	print 'XaTransactionTimeout: '+str(XaTransactionTimeout)
 	
 	
 	
@@ -39,13 +39,17 @@ def separador():
 
 for ds in dss:
 	dsName = ds.getName()
+	print "Los parametros del Datasource "+dsName+" son:"
+	print ''
 	print 'JDBCConnectionPoolParams'
 	separador()
-	print "Los parametros del Datasource "+dsName+" son:"
 	getJDBCConnectionPoolParams(dsName)
 	cd('/')
 	separador()
 	print ''
 	print 'JDBCXAParams'
 	getJDBCXAParams(dsName)
+	print ''
+	separador()
+	cd('/')
 	
