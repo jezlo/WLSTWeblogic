@@ -28,9 +28,9 @@ from java.io import FileInputStream
 propInputStream = FileInputStream(properties)
 configProps = Properties()
 configProps.load(propInputStream)
-
+ds="SOA"
 # Set all variables from values in properties file.
-adminUsername=configProps.get("admin.username")
+adminUsername=configProps.get(ds+"admin.username")
 adminPassword=configProps.get("admin.password")
 adminURL=configProps.get("admin.url")
 dsName=configProps.get("ds.name")
