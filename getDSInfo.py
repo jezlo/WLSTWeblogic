@@ -44,7 +44,7 @@ def getJDBCDriverParams(dsName):
 		name = property.getName()
 		value = property.getValue()
 		print name+'='+str(value)
-	
+	cd('/')
 	
 def separador():
 	print '-------------------------'
