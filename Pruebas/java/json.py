@@ -30,7 +30,7 @@ configProps = Properties()
 configProps.load(propInputStream)
 ds="SOA"
 # Set all variables from values in properties file.
-adminUsername=configProps.get(ds+"admin.username")
+adminUsername=configProps.get(ds+".admin.username")
 adminPassword=configProps.get("admin.password")
 adminURL=configProps.get("admin.url")
 dsName=configProps.get("ds.name")
@@ -55,4 +55,4 @@ print 'dsPassword=', dsPassword
 print 'dsTargetType=', dsTargetType
 print 'dsTargetName=', dsTargetName
 
-configProps.set(dsUsername, "web")
+#configProps.set(dsUsername, "web")
