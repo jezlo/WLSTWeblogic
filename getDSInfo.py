@@ -17,13 +17,18 @@ def getJDBCConnectionPoolParams(dsName):
 	print "MaxCapacity: "+str(MaxCapacity)
 	print "MinCapacity: "+str(MinCapacity)
 	print "InactiveConnectionTimeoutSeconds: "+str(InactiveConnectionTimeoutSeconds)
+	cd('/')
 	
 def getJDBCXAParams(dsName):
 	cd('/JDBCSystemResources/'+dsName+'/JDBCResource/'+dsName+'/JDBCXAParams/'+dsName)
 	XaSetTransactionTimeout = get('XaSetTransactionTimeout')
 	XaTransactionTimeout = cmo.getXaTransactionTimeout()
-	print 'XaSetTransactionTimeout: '+str(XaSetTransactionTimeout)
+	XaSet = 'False'
+	if XaSetTransactionTimeout == 1:
+		XaSet = 'True'
+	print 'XaSetTransactionTimeout: '+str(XaSet)
 	print 'XaTransactionTimeout: '+str(XaTransactionTimeout)
+	cd('/')
 	
 def getJDBCDataSourceParams(dsName):
 	cd('/JDBCSystemResources/'+dsName+'/JDBCResource/'+dsName+'/JDBCDataSourceParams/'+dsName)
@@ -32,11 +37,12 @@ def getJDBCDataSourceParams(dsName):
 	#Imprime cada JNDI
 	for JNDIName in JNDINames:
 		print JNDIName
+	cd('/')
 
 def getJDBCDriverParams(dsName):
 	cd('/JDBCSystemResources/'+dsName+'/JDBCResource/'+dsName+'/JDBCDriverParams/'+dsName)
 	Url = cmo.getUrl()
-	print Url
+	print 'Url: '+Url
 	
 	cd('Properties/'+dsName)
 	properties = cmo.getProperties()
@@ -68,7 +74,6 @@ for ds in dss:
 	print 'JDBCConnectionPoolParams'
 	separador()
 	getJDBCConnectionPoolParams(dsName)
-	cd('/')
 	print ''
 	
 	#Obtiene parametros XA
@@ -76,20 +81,18 @@ for ds in dss:
 	print 'JDBCXAParams'
 	separador()
 	getJDBCXAParams(dsName)
-	cd('/')
 	print ''
 	
 	#Obtiene Parametros de DataSource
 	separador()
-	print 'getJDBCDataSourceParams'
+	print 'JDBCDataSourceParams'
 	separador()
 	getJDBCDataSourceParams(dsName)
-	cd('/')
 	print ''
 	
 	#Obtiene los parametros JDBCDriverParams
 	separador()
-	print 'getJDBCDriverParams'
+	print 'JDBCDriverParams'
 	separador()
 	getJDBCDriverParams(dsName)
 	print ''
