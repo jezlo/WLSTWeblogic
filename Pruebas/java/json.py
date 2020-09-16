@@ -11,6 +11,10 @@ import re
 properties = ''
 try:
    opts, args = getopt.getopt(sys.argv[1:],"p:h::",["properies="])
+   print "#########"
+   print opts
+   print args
+   print "#########"
 except getopt.GetoptError:
    print 'set_datasource.py -p <path-to-properties-file>'
    sys.exit(2)
