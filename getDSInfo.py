@@ -8,11 +8,13 @@ cd('/')
 dss = cmo.getJDBCSystemResources()
 
 def getJDBCConnectionPoolParams(dsName):
+	#obtencion de informacion
 	cd('JDBCSystemResources/'+dsName+'/JDBCResource/'+dsName+'/JDBCConnectionPoolParams/'+dsName)
 	InitialCapacity = cmo.getInitialCapacity()
 	MaxCapacity = cmo.getMaxCapacity()
 	MinCapacity = cmo.getMinCapacity()
 	InactiveConnectionTimeoutSeconds = cmo.getInactiveConnectionTimeoutSeconds()
+	#impresiones
 	print "InitialCapacity: "+str(InitialCapacity)
 	print "MaxCapacity: "+str(MaxCapacity)
 	print "MinCapacity: "+str(MinCapacity)
@@ -42,7 +44,10 @@ def getJDBCDataSourceParams(dsName):
 def getJDBCDriverParams(dsName):
 	cd('/JDBCSystemResources/'+dsName+'/JDBCResource/'+dsName+'/JDBCDriverParams/'+dsName)
 	Url = cmo.getUrl()
+	DriverName = cmo.getDriverName()
+	
 	print 'Url: '+Url
+	print 'DriverName: '+DriverName
 	
 	cd('Properties/'+dsName)
 	properties = cmo.getProperties()
