@@ -38,7 +38,7 @@ def getJDBCDataSourceParams(dsName):
 	JNDINames = cmo.getJNDINames()
 	#Imprime cada JNDI
 	for JNDIName in JNDINames:
-		print 'JNDIName: 'JNDIName
+		print 'JNDIName: '+JNDIName
 	cd('/')
 
 def getJDBCDriverParams(dsName):
