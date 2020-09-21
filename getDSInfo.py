@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-#
 def getDS():
 	### Conexion a la consola
 	connect('weblogic','Welcome1','t3://192.168.0.30:7001')
