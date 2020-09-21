@@ -1,11 +1,11 @@
-### Conexión a la consola
-connect('weblogic','Welcome1','t3://192.168.0.30:7001')
+def getDS():
+	### Conexion a la consola
+	connect('weblogic','Welcome1','t3://192.168.0.30:7001')
 
-
-cd('/')
-#
-#Obtiene todos los DataSources
-dss = cmo.getJDBCSystemResources()
+	cd('/')
+	#Obtiene todos los DataSources
+	dss = cmo.getJDBCSystemResources()
+	return dss
 
 def getJDBCConnectionPoolParams(dsName):
 	#obtencion de informacion
@@ -38,7 +38,7 @@ def getJDBCDataSourceParams(dsName):
 	JNDINames = cmo.getJNDINames()
 	#Imprime cada JNDI
 	for JNDIName in JNDINames:
-		print JNDIName
+		print 'JNDIName: 'JNDIName
 	cd('/')
 
 def getJDBCDriverParams(dsName):
@@ -63,43 +63,61 @@ def separador():
 def separador2():
 	print '#########################'
 
-#Ciclo sobre todos los DataSources
-for ds in dss:
-	#Obtiene Nombre de los DataSources
+def menuDS():
 	dsName = ds.getName()
-	
-	#Imprime el Nombre del DataSource
-	separador2()
-	print "##### "+dsName
-	separador2()
-	print ''
-	
-	#Obtiene parametros de Conexion
-	#separador()
-	#print 'JDBCConnectionPoolParams'
-	#separador()
-	getJDBCConnectionPoolParams(dsName)
-	print ''
-	
-	#Obtiene parametros XA
-	#separador()
-	#print 'JDBCXAParams'
-	#separador()
-	getJDBCXAParams(dsName)
-	print ''
-	
-	#Obtiene Parametros de DataSource
-	#separador()
-	#print 'JDBCDataSourceParams'
-	#separador()
-	getJDBCDataSourceParams(dsName)
-	print ''
-	
-	#Obtiene los parametros JDBCDriverParams
-	#separador()
-	#print 'JDBCDriverParams'
-	#separador()
-	getJDBCDriverParams(dsName)
-	print ''
+	print "Menu DS"
 
-print "Finalizo el Script"
+def menu():
+	dss = getDS()
+	listaDataSources = ['Salir']
+	contador = 0
+
+	for ds in dss:
+		dsName = ds.getName()
+		listaDataSources.append(dsName)
+
+	for i in listaDataSources:
+		print str(contador)+". "+i
+		contador += 1
+	while True:
+		print 'options...'
+		choice = int(raw_input())
+		dsName = listaDataSources[choice]
+		if choice == 0:
+			break
+		else:
+			getJDBCConnectionPoolParams(dsName)
+			getJDBCXAParams(dsName)
+			getJDBCDataSourceParams(dsName)
+			getJDBCDriverParams(dsName)
+
+#Ciclo sobre todos los DataSources
+def allInfo():
+	dss = getDS()
+	for ds in dss:
+		#Obtiene Nombre de los DataSources
+		dsName = ds.getName()
+		
+		#Imprime el Nombre del DataSource
+		separador2()
+		print "##### "+dsName
+		separador2()
+		print ''
+		
+		#Obtiene parametros de Conexion
+		getJDBCConnectionPoolParams(dsName)
+		print ''
+		
+		#Obtiene parametros XA
+		getJDBCXAParams(dsName)
+		print ''
+		
+		#Obtiene Parametros de DataSource
+		getJDBCDataSourceParams(dsName)
+		print ''
+		
+		#Obtiene los parametros JDBCDriverParams
+		getJDBCDriverParams(dsName)
+		print ''
+menu()
+print "Finalizo el Script" 
