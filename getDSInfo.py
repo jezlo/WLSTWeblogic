@@ -1,5 +1,10 @@
+def getDS():
+	### Conexion a la consola
+	connect('weblogic','Welcome1','t3://192.168.0.30:7001')
+=======
 ### Conexión a la consola
 connect('weblogic','Welcome1','t3://192.168.0.30:7001')
+>>>>>>> parent of 409c05e... Se agregaron cambios en el Menu FUNCIONAL
 
 
 cd('/')
@@ -75,29 +80,31 @@ for ds in dss:
 	print ''
 	
 	#Obtiene parametros de Conexion
-	separador()
-	print 'JDBCConnectionPoolParams'
-	separador()
+	#separador()
+	#print 'JDBCConnectionPoolParams'
+	#separador()
 	getJDBCConnectionPoolParams(dsName)
 	print ''
 	
 	#Obtiene parametros XA
-	separador()
-	print 'JDBCXAParams'
-	separador()
+	#separador()
+	#print 'JDBCXAParams'
+	#separador()
 	getJDBCXAParams(dsName)
 	print ''
 	
 	#Obtiene Parametros de DataSource
-	separador()
-	print 'JDBCDataSourceParams'
-	separador()
+	#separador()
+	#print 'JDBCDataSourceParams'
+	#separador()
 	getJDBCDataSourceParams(dsName)
 	print ''
 	
 	#Obtiene los parametros JDBCDriverParams
-	separador()
-	print 'JDBCDriverParams'
-	separador()
+	#separador()
+	#print 'JDBCDriverParams'
+	#separador()
 	getJDBCDriverParams(dsName)
 	print ''
+
+print "Finalizo el Script"
