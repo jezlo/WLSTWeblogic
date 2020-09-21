@@ -1,3 +1,4 @@
+#//http://rreddy.blogspot.com/2016/10/wlst-script-to-change.html
 import javax.management.openmbean.CompositeDataSupport;
 if __name__ == '__main__':
     from wlstModule import *#@UnusedWildImport
