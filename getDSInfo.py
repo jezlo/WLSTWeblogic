@@ -1,6 +1,6 @@
 def getDS():
 	### Conexion a la consola
-	connect('weblogic','Welcome1','t3://192.168.0.30:7001')
+	connect('weblogic','Welcome1','t3://localhost9001')
 
 	cd('/')
 	#Obtiene todos los DataSources
@@ -15,10 +15,10 @@ def getJDBCConnectionPoolParams(dsName):
 	MinCapacity = cmo.getMinCapacity()
 	InactiveConnectionTimeoutSeconds = cmo.getInactiveConnectionTimeoutSeconds()
 	#impresiones
-	print "InitialCapacity: "+str(InitialCapacity)
-	print "MaxCapacity: "+str(MaxCapacity)
-	print "MinCapacity: "+str(MinCapacity)
-	print "InactiveConnectionTimeoutSeconds: "+str(InactiveConnectionTimeoutSeconds)
+	print "InitialCapacity="+str(InitialCapacity)
+	print "MaxCapacity="+str(MaxCapacity)
+	print "MinCapacity="+str(MinCapacity)
+	print "InactiveConnectionTimeoutSeconds="+str(InactiveConnectionTimeoutSeconds)
 	cd('/')
 	
 def getJDBCXAParams(dsName):
@@ -28,8 +28,9 @@ def getJDBCXAParams(dsName):
 	XaSet = 'False'
 	if XaSetTransactionTimeout == 1:
 		XaSet = 'True'
-	print 'XaSetTransactionTimeout: '+str(XaSet)
-	print 'XaTransactionTimeout: '+str(XaTransactionTimeout)
+	#print 'XaSetTransactionTimeout: '+str(XaSet)
+	print 'XaSetTransactionTimeout='+str(XaSetTransactionTimeout)
+	print 'XaTransactionTimeout='+str(XaTransactionTimeout)
 	cd('/')
 	
 def getJDBCDataSourceParams(dsName):
@@ -38,7 +39,7 @@ def getJDBCDataSourceParams(dsName):
 	JNDINames = cmo.getJNDINames()
 	#Imprime cada JNDI
 	for JNDIName in JNDINames:
-		print 'JNDIName: '+JNDIName
+		print 'JNDIName='+JNDIName
 	cd('/')
 
 def getJDBCDriverParams(dsName):
@@ -46,8 +47,8 @@ def getJDBCDriverParams(dsName):
 	Url = cmo.getUrl()
 	DriverName = cmo.getDriverName()
 	
-	print 'Url: '+Url
-	print 'DriverName: '+DriverName
+	print 'Url='+Url
+	print 'DriverName='+DriverName
 	
 	cd('Properties/'+dsName)
 	properties = cmo.getProperties()
@@ -86,6 +87,8 @@ def menu():
 		if choice == 0:
 			break
 		else:
+			separador()
+			print dsName
 			getJDBCConnectionPoolParams(dsName)
 			getJDBCXAParams(dsName)
 			getJDBCDataSourceParams(dsName)
@@ -94,7 +97,10 @@ def menu():
 #Ciclo sobre todos los DataSources
 def allInfo():
 	dss = getDS()
+	defaults = ['Salir', 'WLSSchemaDataSource', 'LocalSvcTblDataSource', 'opss-data-source', 'opss-audit-viewDS', 'opss-audit-DBDS', 'mds-owsm', 'OraSDPMDataSource', 'SOADataSource', 'EDNDataSource', 'EDNLocalTxDataSource','SOALocalTxDataSource','mds-soa']
 	for ds in dss:
+		if ds in defaults:
+			continue
 		#Obtiene Nombre de los DataSources
 		dsName = ds.getName()
 		
@@ -120,4 +126,5 @@ def allInfo():
 		getJDBCDriverParams(dsName)
 		print ''
 menu()
+allInfo()
 print "Finalizo el Script" 
