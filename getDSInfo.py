@@ -1,6 +1,6 @@
 def getDS():
 	### Conexion a la consola
-	connect('weblogic','Welcome1','t3://localhost9001')
+	connect('weblogic','${{ secrets.PASS_WEBLOGIC }}','t3://localhost9001')
 
 	cd('/')
 	#Obtiene todos los DataSources
